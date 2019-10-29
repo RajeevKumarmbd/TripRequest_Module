@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="seq_ncr_no" model="ir.sequence">
+            <field name="name">Non Confirmance Report Number</field>
+            <field name="code">trpmodule.travelrequisitiontable</field>
+            <field name="prefix">TRIPID</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

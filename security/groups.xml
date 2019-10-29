@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="group_Trpapprover" model="res.groups">
+    <field name="name">Trip Request Module Approver</field>
+  </record>
+   <record id="group_Trpuser" model="res.groups">
+    <field name="name">Trip Request Module User</field>
+  </record>
+</odoo>

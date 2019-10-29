@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<act_window
+id="trpmodule_fcmcheckrecordtable_action"
+name="FCM Check Record"
+res_model="trpmodule.fcmcheckrecordtable" />
+<menuitem
+ id="trpmodule_fcmcheckrecordtable_menu"
+ name="FCM Check Report"
+ action="trpmodule_fcmcheckrecordtable_action"
+ parent="TripRequestmodule_mainmenu"
+ groups="group_Trpuser"
+ sequence="6" />
+
+<record id ="trpmodule_fcmcheckrecordtable_view_form" model="ir.ui.view">
+   <field name="name">FCM Report Details Input Form</field>
+   <field name="model">trpmodule.fcmcheckrecordtable</field>
+   <field name="arch" type="xml">
+         <form>
+			<sheet>
+					<group col="2" >
+							<field name="from_dt" style="width:25%%" autocomplete="off" />
+					</group>
+					<br /><br />
+					<group col="3">
+							<field name="upload_file" filename="uploadedfilename"/>
+							<button name="get_excel_data" string="Upload Excel Data" type="object" class="oe_highlight"  />
+							<field name="uploadedfilename" invisible="1"/>
+					</group>
+
+					<br /><group col="2">
+					<field name="download_file" filename="downloadedfilename" readonly="True" />
+				    <field name="downloadedfilename" invisible="1" readonly="True"/>
+
+					</group>
+					<group col="2">
+						<field name="remarks"/>
+					</group>
+
+					</sheet>
+	 </form>
+   </field>
+</record>
+
+<record id="trpmodule_fcmcheckrecordtable_view_tree" model="ir.ui.view">
+  <field name="name">FCM Check Report  List</field>
+  <field name="model">trpmodule.fcmcheckrecordtable</field>
+  <field name="arch" type="xml">
+       <tree>
+	              <field name="from_dt"/>
+                  <field name="downloadedfilename"/>
+                  <field name="remarks"/>
+       </tree>
+
+    </field>
+</record>
+</odoo>

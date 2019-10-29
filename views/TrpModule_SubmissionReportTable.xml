@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<act_window
+id="trpmodule_submissionreporttable_action"
+name="Submission Report"
+res_model="trpmodule.submissionreporttable" />
+
+<menuitem
+ id="trpmodule_submissionreporttable_menu"
+ name="Submission Report"
+ action="trpmodule_submissionreporttable_action"
+ parent="TripRequestmodule_mainmenu"
+ groups="group_Trpuser"
+ sequence="5" />
+
+<record id ="trpmodule_submissionreporttable_view_form" model="ir.ui.view">
+   <field name="name">Submission Report Details Input Form</field>
+   <field name="model">trpmodule.submissionreporttable</field>
+   <field name="arch" type="xml">
+         <form>
+			<sheet>
+					<group col="2">
+							<field name="from_dt" style="width:25%%" autocomplete="off" />
+					</group>
+
+					<group col="3">
+							<field name="upload_file" filename="uploadedfilename"/>
+							<button name="upload_excel" string="Click here to Update the System" type="object" class="oe_highlight"  />
+							<field name="uploadedfilename" invisible="1"/>
+					</group>
+
+					<br /><br /><br /><group col="2">
+					<button name="get_fcm_data" string="Get FCM INVOICE DATA" type="object" class="oe_highlight"  />
+					<button name="get_excel_data" string="Get Excel Data" type="object" class="oe_highlight"  />
+					</group>
+					<group col="2">
+							<field name="remarks"/>
+							<field name="excel_da"/>
+					</group>
+
+					</sheet>
+	 </form>
+   </field>
+</record>
+
+<record id="trpmodule_submissionreporttable_view_tree" model="ir.ui.view">
+  <field name="name">Submission Report  List</field>
+  <field name="model">trpmodule.submissionreporttable</field>
+  <field name="arch" type="xml">
+       <tree>
+	              <field name="from_dt"/>
+                 <field name="remarks"/>
+                 <field name="excel_da"/>
+       </tree>
+
+
+    </field>
+</record>
+</odoo>

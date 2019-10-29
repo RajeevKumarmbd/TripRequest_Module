@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<act_window
+id="trpmodule_sanctionidtable_action"
+name="Sanction Data"
+res_model="trpmodule.sanctionidtable" />
+<menuitem id="TripRequestmodule_mainmenu" name="TRIP REQUEST MODULE"/>
+<menuitem
+ id="trpmodule_sanctionidtable_menu"
+ name="Sanction Request"
+ action="trpmodule_sanctionidtable_action"
+ parent="TripRequestmodule_mainmenu"
+ groups="group_Trpuser"
+ sequence="1" />
+
+<record id ="trpmodule_sanctionidtable_view_form" model="ir.ui.view">
+   <field name="name">Sanction Input Form</field>
+   <field name="model">trpmodule.sanctionidtable</field>
+   <field name="arch" type="xml">
+         <form>
+			<sheet>
+                <group col="4">
+                    <field name="name" autocomplete="off"/>
+                    <field name="agenda_ref_no"/>
+                </group>
+                <group col="2">
+                <field name="description_justification"/>
+                </group>
+                <group col="2">
+                <field name="project_name" style="width:39.4%%"/>
+                </group>
+
+                <group  string="View Approval Stutus " style="fg_color:#FE642E"></group>
+                <group col="4">
+                    <field name="submitted_on" style="width:64%%"/>
+                    <field name="status"/>
+                    <field name="file_name"/>
+                    <field name="md_approve_by"/>
+                    <field name="md_approve_on" style="width:64%%"/>
+                 </group>
+                <group col="2">
+                <field name="md_remarks"/>
+                </group>
+                 <group col="4">
+                    <field name="audited_by"/>
+                    <field name="audited_on"/>
+                </group>
+                 <group col="2">
+                <field name="auditor_remark"/>
+                </group>
+			</sheet>
+	 </form>
+   </field>
+</record>
+
+<record id="trpmodule_sanctionidtable_view_tree" model="ir.ui.view">
+  <field name="name">Sanction Request List</field>
+  <field name="model">trpmodule.sanctionidtable</field>
+  <field name="arch" type="xml">
+    <tree>
+	<field name="name"/>
+	<field name="project_name"/>
+    </tree>
+    </field>
+</record>
+</odoo>

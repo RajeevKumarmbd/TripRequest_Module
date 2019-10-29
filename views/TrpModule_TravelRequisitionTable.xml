@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<act_window
+id="trpmodule_travelrequisitiontable_user_action"
+name="Trip Request Data List"
+res_model="trpmodule.travelrequisitiontable" />
+
+<record id ="trpmodule_travelrequisitiontable_user_view_form" model="ir.ui.view">
+   <field name="name">Trip Request Input Form</field>
+   <field name="model">trpmodule.travelrequisitiontable</field>
+   <field name="arch" type="xml">
+         <form  delete="false">
+ 	     <header>
+			    <button name="send_for_approval" type="object" string="Send for Approval" class="oe_highlight" style="background:#088A08;margin-left:500px" attrs="{'invisible': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+         </header>
+			<sheet>
+                <group col="4">
+                    <field name="sanction_id" style="width:64%%" options="{'no_open':True,'no_create':1,'no_create_edit':1}" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="trip_request_id"  autocomplete="off" style="width:64%%" readonly="1" force_save="1" />
+                </group>
+                <group col="4">
+                    <field name="sanction_agenda_ref_no" style="width:64%%" readonly="1" force_save="1" />
+                    <field name="user_id" style="width:64%%"  options="{'no_open':True,'no_create':1,'no_create_edit':1}" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                </group>
+
+                <group col="4">
+                    <field name="date_created" autocomplete="off" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="name" autocomplete="off" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="trip_start_date" style="width:64%%" autocomplete="off" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="trip_end_date" style="width:64%%" autocomplete="off" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="number_of_days" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="are_date_fixed" style="width:64%%" autocomplete="off" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                </group>
+                <group col="4">
+                    <field name="total_cost" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="cost_borne_by_company" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="cost_borne_by_third_party" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="tour_type" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="trip_request_for" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    <field name="no_of_pax" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                </group>
+                <group col="2">
+                    <field name="cost_center" style="width:25%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                </group>
+                 <group string="FCM Booking Details"/>
+
+                <field name="FCM_Booking_id" attrs="{'invisible': [('trip_request_id','=', False)], 'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}" />
+                      <group string="Employee Details"/>
+                    <group col="4">
+                        <field name="card_no"/>
+                        <field name="emp_name"/>
+                        <field name="dep_name"/>
+                        <field name="designation"/>
+                        <field name="email_id"/>
+                        <field name="contact_no"/>
+                        <field name="ta_category" style="width:64%%" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                    </group>
+                <notebook>
+                    <page string = "Estimate Expense Details">
+                        <field name="estimateexpensedetails_id" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                        <group string="Other Allowance / Expenses" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+                        <field name="otherallowance_id" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+
+                    </page>
+                    <page string = "Group Details">
+                        <group string="You can add Group Traveller Details "/>
+                        <field name="groupdetails_id" attrs="{'readonly': [('status_approver','in', ['Reject','Approved','For Approval'])]}"/>
+
+                    </page>
+                </notebook>
+                <group col="2">
+                    <field name="status_approver" style="width:25%%" readonly="1" force_save="1"/>
+                </group>
+
+			</sheet>
+	 </form>
+   </field>
+</record>
+<record id="trpmodule_travelrequisitiontable_user_action" model="ir.actions.act_window">
+            <field name="name">Trip Data List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">trpmodule.travelrequisitiontable</field>
+    <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree'}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('trpmodule_travelrequisitiontable_user_view_form')}),
+        (0, 0, {'view_mode': 'kanban'})]"/>
+    <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+            Click to define a new product.
+        </p>
+    </field>
+</record>
+<record id="trpmodule_travelrequisitiontable_view_tree" model="ir.ui.view">
+  <field name="name">Trip Request Data List</field>
+  <field name="model">trpmodule.travelrequisitiontable</field>
+  <field name="arch" type="xml">
+    <tree decoration-muted="status_approver== 'Free'" decoration-danger="status_approver=='Reject'" decoration-success="status_approver=='Approved'">
+        <field name="date_created"/>
+        <field name="emp_name"/>
+        <field name="trip_request_id"/>
+        <field name="total_cost"/>
+        <field name="user_id" />
+        <field name="status_approver"/>
+        <field name="assign_remarks" />
+    </tree>
+    </field>
+</record>
+
+<record id ="trpmodule_travelrequisitiontable_view_form_approver" model="ir.ui.view">
+   <field name="name">Trip Form</field>
+   <field name="model">trpmodule.travelrequisitiontable</field>
+   <field name="arch" type="xml">
+         <form>
+ 	     <header>
+                 <button name="approved_trip" type="object" string="Approved" class="oe_highlight" style="background:#6E6E6E;margin-left:600px !important" confirm="Are you sure you want to Approved"/>
+			     <button name="reject_trip" type="object" string="Reject" class="oe_highlight" style="background:#FF0000;width:100px;margin-left:420px !important" confirm="Are you sure you want to Reject"/>
+
+         </header>
+			<sheet>
+                <group col="4">
+                    <field name="sanction_id" style="width:64%%" options="{'no_open':True,'no_create':1,'no_create_edit':1}" readonly="1" force_save="1" />
+                    <field name="trip_request_id" force_save="1" autocomplete="off" style="width:64%%" readonly="1"/>
+                </group>
+                <group col="4">
+                    <field name="sanction_agenda_ref_no" style="width:64%%" readonly="1" force_save="1" />
+                    <field name="user_id" style="width:64%%"  options="{'no_open':True,'no_create':1,'no_create_edit':1}" readonly="1" force_save="1"/>
+                </group>
+
+                <group col="4">
+                    <field name="date_created" autocomplete="off" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="name" autocomplete="off" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="trip_start_date" style="width:64%%" autocomplete="off" readonly="1" force_save="1"/>
+                    <field name="trip_end_date" style="width:64%%" autocomplete="off" readonly="1" force_save="1"/>
+                    <field name="number_of_days" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="are_date_fixed" style="width:64%%" autocomplete="off" readonly="1" force_save="1"/>
+                </group>
+
+                <group col="4">
+                    <field name="total_cost" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="cost_borne_by_company" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="cost_borne_by_third_party" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="tour_type" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="trip_request_for" style="width:64%%" readonly="1" force_save="1"/>
+                    <field name="no_of_pax" style="width:64%%" readonly="1" force_save="1"/>
+                </group>
+                <group col="2">
+                    <field name="cost_center" style="width:25%%" readonly="1" force_save="1"/>
+                </group>
+                 <group string="FCM Booking Details"/>
+
+                <field name="FCM_Booking_id" readonly="1" force_save="1"/>
+                      <group string="Employee Details"/>
+                    <group col="4">
+                        <field name="card_no"/>
+                        <field name="emp_name"/>
+                        <field name="dep_name"/>
+                        <field name="designation"/>
+                        <field name="email_id"/>
+                        <field name="contact_no"/>
+                        <field name="ta_category" style="width:64%%" readonly="1" force_save="1"/>
+                    </group>
+                <notebook>
+                    <page string = "Estimate Expense Details">
+                        <field name="estimateexpensedetails_id" readonly="1" force_save="1"/>
+                        <group string="Other Allowance / Expenses"/>
+                        <field name="otherallowance_id" readonly="1" force_save="1"/>
+
+                    </page>
+                    <page string = "Group Details">
+                        <group string="You can add Group Traveller Details "/>
+                        <field name="groupdetails_id" readonly="1" force_save="1"/>
+
+                    </page>
+                </notebook>
+                 <group col="2">
+                    <field name="assign_remarks" />
+                </group>
+                <group col="2">
+                    <field name="status_approver" readonly="1" force_save="1"/>
+                </group>
+
+			</sheet>
+	 </form>
+   </field>
+</record>
+<record id="trpmodule_travelrequisitiontable_approver_action" model="ir.actions.act_window">
+            <field name="name">Approver Data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">trpmodule.travelrequisitiontable</field>
+    <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree'}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('trpmodule_travelrequisitiontable_view_form_approver')}),
+        (0, 0, {'view_mode': 'kanban'})]"/>
+    <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+            Click to define a new product.
+        </p>
+    </field>
+</record>
+
+<menuitem
+ id="trpmodule_travelrequisitiontable_user_menu"
+ name="Travel Requisition"
+ action="trpmodule_travelrequisitiontable_user_action"
+ parent="TripRequestmodule_mainmenu"
+ groups="group_Trpuser"
+ sequence="2" />
+ <menuitem
+     id="trpmodule_travelrequisitiontable_approver_menu"
+     name="Approver Data"
+     action="trpmodule_travelrequisitiontable_approver_action"
+     parent="TripRequestmodule_mainmenu"
+     groups="group_Trpapprover"
+     sequence="5"/>
+
+</odoo>
+
+

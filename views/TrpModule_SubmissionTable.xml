@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<act_window
+id="trpmodule_submissiontable_action"
+name="Submission Details"
+res_model="trpmodule.submissiontable" />
+
+<menuitem
+ id="trpmodule_submissiontable_menu"
+ name="Submission Details"
+ action="trpmodule_submissiontable_action"
+ parent="TripRequestmodule_mainmenu"
+ sequence="4" />
+
+<record id ="trpmodule_submissiontable_view_form" model="ir.ui.view">
+   <field name="name">Submission Details Input Form</field>
+   <field name="model">trpmodule.submissiontable</field>
+   <field name="arch" type="xml">
+         <form>
+			<sheet>
+                <group  string="System Area To Be Filled by ISGC"></group>
+                <group col="4">
+                    <field name="advice_no"/>
+                    <field name="sr_no"/>
+                    <field name="message"/>
+                    <field name="agents_irno"/>
+                    <field name="agency_irno"/>
+                    <field name="upload_batchno"/>
+                    <field name="ho_non_ho"/>
+                    <field name="domestic_international"/>
+                    <field name="project_code"/>
+                    <field name="tran_type"/>
+                </group>
+                <group  string="Agents Charge and Details"></group>
+                <group col="4">
+                    <field name="isgec_emp_code"/>
+                    <field name="isgec_gstin"/>
+                    <field name="supplier_name"/>
+                    <field name="supplier_gstin"/>
+                    <field name="name"/>
+                    <field name="invoice_date"/>
+                    <field name="pax_name"/>
+                    <field name="sector"/>
+                    <field name="airline_name"/>
+                    <field name="travel_date"/>
+                    <field name="tkt_no"/>
+                    <field name="booked"/>
+                    <field name="service_charge"/>
+                    <field name="igst_amt"/>
+                    <field name="sgst_amt"/>
+                    <field name="cgst_amt"/>
+                    <field name="total_service_amt"/>
+                    <field name="total_ticket_amt"/>
+                    <field name="total_amt"/>
+                    <field name="ref_no"/>
+                    <field name="state_code"/>
+                    <field name="rcm_applicable"/>
+                    <field name="gst_tax_category"/>
+                </group>
+                <group  string="Airline Charge and Details"></group>
+                <group col="4">
+                    <field name="airline_gstin"/>
+                    <field name="tkt_no_2"/>
+                    <field name="booked_on"/>
+                    <field name="airline_name_2"/>
+                    <field name="basic_fare"/>
+                    <field name="yq_tax_amt"/>
+                    <field name="isgt_amt_2"/>
+                    <field name="sgst_amt_2"/>
+                    <field name="cgst_amt_2"/>
+                    <field name="all_other_taxes_amt"/>
+                    <field name="total_ticket_amt_2"/>
+                    <field name="bta_btc"/>
+                    <field name="submission_period"/>
+                </group>
+			</sheet>
+	 </form>
+   </field>
+</record>
+
+<record id="trpmodule_submissiontable_view_tree" model="ir.ui.view">
+  <field name="name">Submission Details  List</field>
+  <field name="model">trpmodule.submissiontable</field>
+  <field name="arch" type="xml">
+       <tree limit="500">
+	                <field name="isgec_emp_code"/>
+                    <field name="name"/>
+                    <field name="invoice_date"/>
+                    <field name="pax_name"/>
+                    <field name="sector"/>
+                    <field name="travel_date"/>
+                    <field name="booked"/>
+                    <field name="submission_period"/>
+       </tree>
+
+
+    </field>
+</record>
+</odoo>

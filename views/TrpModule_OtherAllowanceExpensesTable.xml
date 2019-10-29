@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--<act_window-->
+<!--id="trpmodule_otherallowanceexpensestable_action"-->
+<!--name="Other Allowance / Expenses Details Data"-->
+<!--res_model="trpmodule.otherallowanceexpensestable" />-->
+
+<!--<menuitem-->
+<!-- id="trpmodule_otherallowanceexpensestable_menu"-->
+<!-- name="Other Allowance / Expenses"-->
+<!-- action="trpmodule_otherallowanceexpensestable_action"-->
+<!-- parent="TripRequestmodule_mainmenu"-->
+<!-- sequence="4" />-->
+
+<record id ="trpmodule_otherallowanceexpensestable_view_form" model="ir.ui.view">
+   <field name="name">Other Allowance / Expense Input Form</field>
+   <field name="model">trpmodule.otherallowanceexpensestable</field>
+   <field name="arch" type="xml">
+         <form>
+			<sheet>
+                <group col="4">
+
+                    <field name="name"/>
+                    <field name="currency"/>
+                    <field name="est_price"/>
+                    <field name="sub_total_inr"/>
+                    <field name="remarks"/>
+                </group>
+
+			</sheet>
+	 </form>
+   </field>
+</record>
+
+<record id="trpmodule_otherallowanceexpensestable_view_tree" model="ir.ui.view">
+  <field name="name">Other Allowance / Expense Data List</field>
+  <field name="model">trpmodule.otherallowanceexpensestable</field>
+  <field name="arch" type="xml">
+    <tree>
+
+
+                    <field name="name"/>
+                    <field name="currency"/>
+                    <field name="est_price"/>
+                    <field name="sub_total_inr"/>
+                    <field name="remarks"/>
+    </tree>
+    </field>
+</record>
+</odoo>

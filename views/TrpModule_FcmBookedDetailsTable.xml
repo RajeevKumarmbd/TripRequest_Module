@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<act_window
+id="trpmodule_fcmbookeddetailstable_action"
+name="FCM Booked Details"
+res_model="trpmodule.fcmbookeddetailstable" />
+
+<menuitem
+ id="trpmodule_fcmbookeddetailstable_menu"
+ name="FCM Booked Details"
+ action="trpmodule_fcmbookeddetailstable_action"
+ parent="TripRequestmodule_mainmenu"
+ groups="group_Trpuser"
+ sequence="3" />
+
+<record id ="trpmodule_fcmbookeddetailstable_view_form" model="ir.ui.view">
+   <field name="name">FCM Booked Details Input Form</field>
+   <field name="model">trpmodule.fcmbookeddetailstable</field>
+   <field name="arch" type="xml">
+         <form>
+			<sheet>
+                <group col="4">
+                    <field name="travel_date" style="width:64%%" autocomplete="off" attrs="{'readonly': [('booking_status','in', ('Booking Cancel', 'Cancel Against Booking'))]}"/>
+                    <field name="sector"/>
+                </group>
+                <group col="4">
+                    <field name="name"  style="width:64%%" autocomplete="off" attrs="{'readonly': [('booking_status','in', ('Booking Cancel', 'Cancel Against Booking'))]}"/>
+                    <field name="invoice_no" autocomplete="off" attrs="{'readonly': [('booking_status','in', ('Booking Cancel', 'Cancel Against Booking'))]}"/>
+                 </group>
+                <group col="4">
+                    <field name="invoice_date" style="width:64%%" autocomplete="off" attrs="{'readonly': [('booking_status','in', ('Booking Cancel', 'Cancel Against Booking'))]}"/>
+                    <field name="pax_name" attrs="{'readonly': [('booking_status','in', ('Booking Cancel', 'Cancel Against Booking'))]}"/>
+
+                </group>
+                <group col="4">
+                    <field name="booking_status" readonly="1" force_save="1"/>
+                    <field name="fcm_status" style="width:39.4%%" attrs="{'invisible': [('fcm_status', '=', True)],'readonly': [('booking_status', '=', 'Cancel Against Booking')]}" force_save="1" />
+                    <field name="trip_id" readonly="1" force_save="1"/>
+                </group>
+			</sheet>
+	 </form>
+   </field>
+</record>
+
+<record id="trpmodule_fcmbookeddetailstable_view_tree" model="ir.ui.view">
+  <field name="name">FCM Booked Details  List</field>
+  <field name="model">trpmodule.fcmbookeddetailstable</field>
+  <field name="arch" type="xml">
+       <tree decoration-success="fcm_status==False" decoration-danger="fcm_status==True" decoration-warning = "booking_status=='Cancel Against Booking'">
+	                <field name="travel_date"/>
+                    <field name="sector" />
+                    <field name="name" />
+                    <field name="invoice_no" />
+                    <field name="invoice_date" />
+                    <field name="pax_name" />
+                    <field name="trip_id"/>
+                    <field name="fcm_status" />
+                    <field name="booking_status"/>
+    </tree>
+
+    </field>
+</record>
+</odoo>
